@@ -1,10 +1,10 @@
 # Apprendre AnguarJS Part 1
 
-## HITEMA - Par Ariel Dorol
+#### HITEMA - Par Ariel Dorol
 
 ---
 
-# Qu'est-ce que Angular.js ?
+### Qu'est-ce que Angular.js ?
 
 - Angular.js est un framework JavaScript crée chez Google
 - Basé sur le(s) pattern(s) (MVC, MVVM, MV* Whatever)
@@ -13,7 +13,7 @@
 
 ---
 
-# SP quoi ? SPA !
+### SP quoi ? SPA !
 
 Tout d'abord, éclaircisson un point.
 
@@ -25,7 +25,7 @@ Autrement dit, on peut naviguer sans recharger la page entièrement.
 
 ---
 
-#  Site web classique VS SPA
+###  Site web classique VS SPA
 
 - Première page chargée rapidement
 - Pages suivantes plus lentes
@@ -38,7 +38,7 @@ Autrement dit, on peut naviguer sans recharger la page entièrement.
 
 ---
 
-#  Site web classique VS SPA
+###  Site web classique VS SPA
 
 - Première page chargée un peu lentement
 - Pages suivantes beaucoup plus rapides
@@ -51,7 +51,7 @@ Autrement dit, on peut naviguer sans recharger la page entièrement.
 
 --- 
 
-# Pourquoi Angular ? Pourquoi les frameworks ?
+### Pourquoi Angular ? Pourquoi les frameworks ?
 
 - 2006, jQuery arrive et le JS prends de l'ampleur
 - Mais... jQuery est une librairie sans structure
@@ -64,7 +64,7 @@ Ainsi, les frameworks comme Backbone.js et Angular.js sont apparus pour résoudr
 
 ---
 
-# Installation
+### Installation
 
 Il y a 3 moyens d'installer Angular.js :
 
@@ -77,7 +77,7 @@ Il y a 3 moyens d'installer Angular.js :
 
 ---
 
-# Les directives et le template
+### Les directives et le template
 
 Angular.js fonctionne sur un principe propre à lui : les directives.
 
@@ -93,7 +93,7 @@ Elle indique à Angular sur quelle balise il peut commencer à agir.
 
 ---
 
-# Les directives et le template : ng-app
+### Les directives et le template : ng-app
 
 ```
 <!doctype html>
@@ -109,7 +109,7 @@ Ici, on plug Angular sur TOUTE notre page
 
 ---
 
-# Les directives et le template : ng-init
+### Les directives et le template : ng-init
 
 Une directive importante aussi c'est `ng-init`.
 
@@ -125,7 +125,7 @@ Une directive importante aussi c'est `ng-init`.
 
 ---
 
-# Les directives et le template : expressions
+### Les directives et le template : expressions
 
 - Les expressions doivent être courtes
 - Les expressions n'ont pas accès aux variables globales de window (scope Angular)
@@ -141,7 +141,7 @@ Une directive importante aussi c'est `ng-init`.
 
 ---
 
-# Les directives et le template : events
+### Les directives et le template : events
 
 - On peut écouter des événements grâce à des directives
 - Une directive d'événement a accès à une variable spécial : **$event**
@@ -160,9 +160,9 @@ Une directive importante aussi c'est `ng-init`.
 
 ---
 
-# Les directives et le template : TP
+### Les directives et le template : TP
 
-## Le compteur
+### Le compteur
 
 Créez un compteur avec un bouton **plus** et un bouton **moins** qui vont incrémenter ou décrémenter un nombre affiché à l'écran.
 
@@ -178,9 +178,9 @@ Créez un compteur avec un bouton **plus** et un bouton **moins** qui vont incr�
 
 ---
 
-# Les directives et le template : TP suite
+### Les directives et le template : TP suite
 
-## Limiter le compteur
+### Limiter le compteur
 
 En sachant que vous pouvez mettre des expressions JS, limitez le compteur à : 
 
@@ -209,7 +209,7 @@ OU
 
 ---
 
-# Le data-binding (système MVVM)
+### Le data-binding (système MVVM)
 
 Dans un système MVC classique (serveur) on a ceci :
 
@@ -217,7 +217,7 @@ Dans un système MVC classique (serveur) on a ceci :
 
 ---
 
-# Le data-binding (système MVVM)
+### Le data-binding (système MVVM)
 
 Me système Angular cela va dans les deux sens.
 
@@ -227,7 +227,7 @@ Donc, on a plutôt ceci (two-way-data-binding) :
 
 ---
 
-# Le data-binding (système MVVM)
+### Le data-binding (système MVVM)
 
 On obtient ce two-way-data-binding en récupérant les entrées de l'utilisateur.
 
@@ -243,7 +243,7 @@ Pour cela, on a besoin de la directive `ng-model`.
 
 ---
 
-# Le data-binding (système MVVM)
+### Le data-binding (système MVVM)
 
 Dans l'ordre :
 - Le champ input est lié à la varaible `firstname`
@@ -257,9 +257,9 @@ Cela va dans les 2 sens, entrées <=> sorties
 
 ---
 
-# Le data-binding (système MVVM) : TP
+### Le data-binding (système MVVM) : TP
 
-## Quel âge as-tu ?
+### Quel âge as-tu ?
 
 Créez deux champs : 
 - Un permet de récupérer l'année de naissance
@@ -269,9 +269,9 @@ Affichez ensuite l'âge de l'utilisateur en fonction de ce qui est rentré dans 
 
 ---
 
-# Le data-binding (système MVVM) : TP
+### Le data-binding (système MVVM) : TP
 
-## Inverser les caractères du mot
+### Inverser les caractères du mot
 
 - Créez un champ qui permet de rentrer un mot
 - Affichez le mot rentré en caractères inversés
@@ -279,9 +279,9 @@ Affichez ensuite l'âge de l'utilisateur en fonction de ce qui est rentré dans 
 
 ---
 
-# Le data-binding (système MVVM) : TP
+### Le data-binding (système MVVM) : TP
 
-## Bloquer le bouton
+### Bloquer le bouton
 
 - Créez une case à cocher et un bouton content le mot "envoyer"
 - Bloquez le bouton si la case à chocher vaut false
@@ -290,7 +290,7 @@ TIP : cherchez par rapport à l'attribut HTML disabled
 
 ---
 
-# Les directives conditionnelles
+### Les directives conditionnelles
 
 Angular permet d'ajouter une logique conditionnelle liée aux balises HTML.
 Chacune des directives peut contenir une expression renvoyant **true** ou **false**.
@@ -302,18 +302,18 @@ Chacune des directives peut contenir une expression renvoyant **true** ou **fals
 
 ---
 
-# Les directives conditionnelles
+### Les directives conditionnelles
 
-## Différence entre `ng-if`, `ng-else` et `ng-show`, `ng-hide` : 
+### Différence entre `ng-if`, `ng-else` et `ng-show`, `ng-hide` : 
 
 - `ng-show` & `ng-hide` ne font que manipuler le style display
 - `ng-if` & `ng-else` manipulent la présence dans le DOM
 
 ---
 
-# Les directives conditionnelles : TP
+### Les directives conditionnelles : TP
 
-## Modal
+### Modal
 
 - Créez un paragraphe avec la phrase : "Quel est ton nom ?"
 - Créez en dessous un bouton "répondre"
@@ -325,13 +325,13 @@ Chacune des directives peut contenir une expression renvoyant **true** ou **fals
 
 ---
 
-# Les attributs spéciaux
+### Les attributs spéciaux
 
 Il y a quelque attributs HTML spéciaux qui ne peuvent pas avoir d'interpolation.
 
 Ce sont les attributs : **href** et **src**.
 
-## Pourquoi ?
+### Pourquoi ?
 
 Car la navigateur charge les sources plus vite qu'angular.
 
