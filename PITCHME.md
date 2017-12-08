@@ -489,16 +489,31 @@ https://docs.angularjs.org/api/ng/type/form.FormController
 
 ```
 <form name="contact" novalidate>
-    <input type="email" name="firstname" ng-model="firstname" required>
+    <input type="email" name="u_mail" ng-model="u_mail" required>
     <!-- les erreurs en général -->
     <p ng-show="contact.$submitted && contact.$invalid">Le formulaire est invalid</p>
-    <p ng-show="contact.$submitted && contact.firstname.$invalid">Le champ est invalid</p>
+    <p ng-show="contact.$submitted && contact.u_mail.$invalid">Le champ est invalid</p>
     <!-- sinon plus précis -->
-    <p ng-show="contact.$submitted && contact.firstname.$error.email">Le champ a un email invalid</p>
-    <p ng-show="contact.$submitted && contact.firstname.$error.maxlength">Le champ est trop long</p>
+    <p ng-show="contact.$submitted && contact.u_mail.$error.email">Le champ a un email invalid</p>
+    <p ng-show="contact.$submitted && contact.u_mail.$error.maxlength">Le champ est trop long</p>
     <p><input type="submit"></p>
 </form>
 ```
 
+---
 
+# La validation de formulaire
 
+Quand vous ajoutez un **name** sur le formulaire, la valeur de cet attribut se retrouve sur le **$scope** car Angular detecte votre formulaire au sein de **chaque controller** et le bind automatiquement sur le scope.
+
+Dans votre controller vous pouvez donc utiliser plein de fonctions du formulaire, voir : 
+
+https://docs.angularjs.org/api/ng/type/form.FormController
+
+---
+
+# La validation de formulaire
+
+Sur le formulaire vous avez accès au champ grâce à leur name.
+
+Pour un form avec le name "contact" et un champ avec un name "firstname" vous pouvez donc faire `contact.firstname` pour accèder au champ et vérifier ses erreurs comme dans l'exemple du slide précédent.
