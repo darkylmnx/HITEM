@@ -296,7 +296,6 @@ Angular permet d'ajouter une logique conditionnelle liée aux balises HTML.
 Chacune des directives peut contenir une expression renvoyant **true** ou **false**.
 
 - `ng-if` permet de supprimer (false) / ajouter (true) un élément du DOM
-- `ng-else` agit comme un vrai **else**, donc toujours précédé de `ng-if`
 - `ng-show` permet d'afficher un élément du template si c'est **true**
 - `ng-hide` permet de cacher un élément du template si c'est **true**
 
@@ -304,10 +303,10 @@ Chacune des directives peut contenir une expression renvoyant **true** ou **fals
 
 # Les directives conditionnelles
 
-## Différence entre `ng-if`, `ng-else` et `ng-show`, `ng-hide` : 
+## Différence entre `ng-if` et `ng-show` / `ng-hide` : 
 
 - `ng-show` & `ng-hide` ne font que manipuler le style display
-- `ng-if` & `ng-else` manipulent la présence dans le DOM
+- `ng-if` manipule la présence dans le DOM
 
 ---
 
@@ -337,5 +336,169 @@ Car la navigateur charge les sources plus vite qu'angular.
 
 Utilisez  à la place :
 
-- `ng-href="http://monlien.fr/{{page_id}}"` 
-- `ng-src="http://monlien.fr/{{page_id}}"`
+- `ng-href="http://monlien.fr/{{page_id}}"`
+- `ng-src="http://monlien.fr/{{page_id}}"` 
+
+---
+
+# Les attributs spéciaux
+
+Certains attributs ont besoin de valeurs booléens, pour ceux-là, vous avez des directives aussi.
+
+- `ng-selected="expression"` : qui sert à définir la balise option selectionnée
+- `ng-checked="expression"` : qui sert à définir la valeur cochée d'une checkbox
+- `ng-disabled="expression"` : qui sert à définir si un élément est disabled
+- `ng-selected="expression"` : qui sert à définir la balise option selectionnée
+
+---
+
+# Les Modules & Controllers
+
+On a jusqu'à présent fait de la logique simple. Pour de la logique plus complexe, on peut créer un **controller** qui va détenir plus de logique et nous éviter de faire trop de **ng-init** et surtout permettre de définir des fonctions.
+
+Un controller a besoin d'un module, chaque app angular aura toujours un module qui est là pour rassembler : des controllers, des services, des directives persos...
+
+Le nom du module est à préciser sur la directive `ng-app`.
+Le nom du controller est à préciser sur la directive `ng-controller`.
+
+---
+
+# Les Modules & Controllers
+
+Un controller se définit comme ceci :
+
+```javascript
+var app = angular.module('monModule', []);
+
+app.controller('MonController', MonControllerFunc);
+
+function MonControllerFunc() {
+
+}
+```
+
+---
+
+# Les Modules & Controllers
+
+Dans un controller on peut définir des propriétés et des methods à exposer dans le template.
+
+Pour cela, on les ajoute sur le scope. Chaque controller peut injecter des dépendances dynamiquement grâce aux paramètres.
+
+Le nom des paramètres à son importance car c'est comme cela qu'Angular sait quelle dépendance importer.
+
+Dans un controller on a accès à tout le JS normal, donc les variables globales aussi.
+
+---
+
+# Les Modules & Controllers
+
+```javascript
+var app = angular.module('monModule', []);
+
+app.controller('MonController', MonControllerFunc);
+
+function MonControllerFunc($scope) {
+    $scope.firstname = 'Sasuke';
+    $scope.lastname = 'Uchiha';
+
+    $scope.getName = function() {
+         window.alert($scope.firstname + ' ' + $scope.lastname);
+    }
+}
+```
+
+---
+
+# Les Modules & Controllers
+
+```
+<!DOCTYPE html>
+<html ng-app="monModule">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div ng-controller="MonController">
+        pour connaître mon nom <button ng-click="getName()">click ici</button>
+    </div>
+</body>
+</html>
+```
+
+---
+
+# Les Modules & Controllers
+
+Attention, les dépendances sont injectées dynamiquement grâce à leur nom, donc, en cas de minification de votre code, ça ne marche plus.
+
+## Pourquoi ?
+
+Car **$scope** par exemple deviendra peut être **a** et angular ne saura pas de quelle dépendance il s'agit. Pour pallier à ce soucis on écrira le controller comme ceci :
+
+---
+
+# Les Modules & Controllers
+
+
+```javascript
+var app = angular.module('monModule', []);
+
+app.controller('MonController', MonControllerFunc);
+
+function MonControllerFunc($scope, $timeout) {}
+MyController.$inject = ['$scope', '$timeout'];
+```
+
+OU sinon une autre manière encore :
+
+---
+
+# Les Modules & Controllers
+
+```javascript
+var app = angular.module('monModule', []);
+
+app.controller('MonController', ['$scope', '$timeout', MonControllerFunc]);
+
+function MonControllerFunc($scope, $timeout) {}
+```
+
+Pour en savoir plus : https://docs.angularjs.org/guide/di
+
+---
+
+# La validation de formulaire
+
+Angular permet de valider des champs out-of-the-box.
+
+Pour rendre un formulaire "validable", il vous faut ajouter plusieurs choses obligatoires : 
+
+- Une balise **form** avec un attribut **name** et **novalidate**
+- Chaque champ du **form** doit avoir un attribut **name** et une directive **ng-model**
+- Un formluaire doit forcément être entouré d'une balise avec un controller
+
+---
+
+# La validation de formulaire
+
+Vous pouvez ensuite ajouter plein de types de validation :
+
+https://docs.angularjs.org/api/ng/type/form.FormController
+
+```
+<form name="contact" novalidate>
+    <input type="email" name="firstname" ng-model="firstname" required>
+    <!-- les erreurs en général -->
+    <p ng-show="contact.$submitted && contact.$invalid">Le formulaire est invalid</p>
+    <p ng-show="contact.$submitted && contact.firstname.$invalid">Le champ est invalid</p>
+    <!-- sinon plus précis -->
+    <p ng-show="contact.$submitted && contact.firstname.$error.email">Le champ a un email invalid</p>
+    <p ng-show="contact.$submitted && contact.firstname.$error.maxlength">Le champ est trop long</p>
+    <p><input type="submit"></p>
+</form>
+```
+
+
+
