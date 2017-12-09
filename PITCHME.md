@@ -517,3 +517,17 @@ https://docs.angularjs.org/api/ng/type/form.FormController
 Sur le formulaire vous avez accès au champ grâce à leur name.
 
 Pour un form avec le name "contact" et un champ avec un name "firstname" vous pouvez donc faire `contact.firstname` pour accèder au champ et vérifier ses erreurs comme dans l'exemple du slide précédent.
+
+---
+
+# Pour aller plus loin (pour votre prochain cours)
+
+- styles et classes dynamiques : ng-style, ng-class
+- ng-include (crée un nouveau scope différent)
+- services & providers
+- les filtres & créer ses propres filtres
+- créer ses propres directives
+- créer ses propres validateurs de champ de formulaire
+- utiliser le router (ui-router mieux que ng-route)
+- animations avec ng-animate
+- voir les pitfalls (ng-html et tout ce qui est asynchrone avec $digest)
