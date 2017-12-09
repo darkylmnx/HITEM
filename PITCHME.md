@@ -6,16 +6,16 @@
 
 # Qu'est-ce que Angular.js ?
 
-- Angular.js est un framework JavaScript crée chez Google
+- Angular.js est un framework JavaScript créé chez Google
 - Basé sur le(s) pattern(s) (MVC, MVVM, MV* Whatever)
-- Permet de créer des applications web côté front-end
-- Permet d'accélrer la création d'une SPA
+- Permets de créer des applications web côté front-end
+- Permets d'accélrer la création d'une SPA
 
 ---
 
 # SP quoi ? SPA !
 
-Tout d'abord, éclaircisson un point.
+Tout d'abord, éclaircissons un point.
 
 ### Qu'est-ce qu'une SPA
 
@@ -53,10 +53,10 @@ Autrement dit, on peut naviguer sans recharger la page entièrement.
 
 # Pourquoi Angular ? Pourquoi les frameworks ?
 
-- 2006, jQuery arrive et le JS prends de l'ampleur
+- 2006, jQuery arrive et le JS prend de l'ampleur
 - Mais... jQuery est une librairie sans structure
 - 2010, il y a de plus en plus d'applications web complexes
-- Les apps deviennent dur à maintenir
+- Les apps deviennent durs à maintenir
 - La logique métier est très présente côté front
 - Le front-end web commence à séparer les données du visuel / rendu
 
@@ -83,11 +83,11 @@ Angular.js fonctionne sur un principe propre à lui : les directives.
 
 Les directives :
 - Indique au template HTML comment réagir aux données et à Angular
-- Sont commes des attributs magiques
+- Sont comme des attributs magiques
 - Nous évite de manipuler le DOM manuellement
 - Commencent souvent par **ng-**
 
-La première directive c'est `ng-app`.
+La première directive est `ng-app`.
 
 Elle indique à Angular sur quelle balise il peut commencer à agir.
 
@@ -130,7 +130,7 @@ Une directive importante aussi c'est `ng-init`.
 - Les expressions doivent être courtes
 - Les expressions n'ont pas accès aux variables globales de window (scope Angular)
 - Les expressions n'ont pas besoin de **var** devant les variables
-- Les expressions peuvent être dans des attributs "normaux"
+- Les expressions peuvent être dans des attributs "normaux" entouré de {{ }}
 
 ```
 <div ng-init="std = { firstname: 'Orelsan', birthyear: 1990 }; age = 2017 - std.birthyear">
@@ -144,7 +144,7 @@ Une directive importante aussi c'est `ng-init`.
 # Les directives et le template : events
 
 - On peut écouter des événements grâce à des directives
-- Une directive d'événement a accès à une variable spécial : **$event**
+- Une directive d'événement a accès à une variable spéciale : **$event**
 - **$event** représente l'objet event en JS
 
 ```
@@ -248,10 +248,10 @@ Pour cela, on a besoin de la directive `ng-model`.
 Dans l'ordre :
 - Le champ input est lié à la varaible `firstname`
 - La variable `firstname` est affichée dans le template
-- Quand la valeur du champ change, `firstname` prends sa valeur
+- Quand la valeur du champ change, `firstname` prend sa valeur
 - La variable `firstname` est updatée dans le template
 - Quand on click sur le bouton, `firstname` change encore de valeur
-- Le champ et le template sont updaté par rapport à `firstname`
+- Le champ et le template sont updatés par rapport à `firstname`
 
 Cela va dans les 2 sens, entrées <=> sorties
 
@@ -263,7 +263,7 @@ Cela va dans les 2 sens, entrées <=> sorties
 
 Créez deux champs : 
 - Un permet de récupérer l'année de naissance
-- L'autre permet de récupérer l'année futur (cette année ou plus)
+- L'autre permet de récupérer l'année future (cette année ou plus)
 
 Affichez ensuite l'âge de l'utilisateur en fonction de ce qui est rentré dans chaque champ.
 
@@ -284,7 +284,7 @@ Affichez ensuite l'âge de l'utilisateur en fonction de ce qui est rentré dans 
 ## Bloquer le bouton
 
 - Créez une case à cocher et un bouton content le mot "envoyer"
-- Bloquez le bouton si la case à chocher vaut false
+- Bloquez le bouton si la case à cocher vaut false
 
 TIP : cherchez par rapport à l'attribut HTML disabled
 
@@ -316,7 +316,7 @@ Chacune des directives peut contenir une expression renvoyant **true** ou **fals
 
 - Créez un paragraphe avec la phrase : "Quel est ton nom ?"
 - Créez en dessous un bouton "répondre"
-- Quand on click sur le bouton, une modal apparait
+- Quand on click sur le bouton, une modal apparaît
 - La modal contient un champ pour rentrer le nom et un bouton pour valider
 - Quand on click sur valider, la modal se ferme
 - La paragraphe "Quel est ton nom ?" n'est plus affiché
@@ -326,13 +326,13 @@ Chacune des directives peut contenir une expression renvoyant **true** ou **fals
 
 # Les attributs spéciaux
 
-Il y a quelque attributs HTML spéciaux qui ne peuvent pas avoir d'interpolation.
+Il y a quelques attributs HTML spéciaux qui ne peuvent pas avoir d'interpolation.
 
 Ce sont les attributs : **href** et **src**.
 
 ## Pourquoi ?
 
-Car la navigateur charge les sources plus vite qu'angular.
+Car le navigateur charge les sources plus vite qu'angular.
 
 Utilisez  à la place :
 
@@ -343,9 +343,9 @@ Utilisez  à la place :
 
 # Les attributs spéciaux
 
-Certains attributs ont besoin de valeurs booléens, pour ceux-là, vous avez des directives aussi.
+Certains attributs ont besoin de valeurs booléennes, pour ceux-là, vous avez des directives aussi.
 
-- `ng-selected="expression"` : qui sert à définir la balise option selectionnée
+- `ng-selected="expression"` : qui sert à définir la balise option sélectionnée
 - `ng-checked="expression"` : qui sert à définir la valeur cochée d'une checkbox
 - `ng-disabled="expression"` : qui sert à définir si un élément est disabled
 - `ng-selected="expression"` : qui sert à définir la balise option selectionnée
@@ -385,7 +385,7 @@ Dans un controller on peut définir des propriétés et des methods à exposer d
 
 Pour cela, on les ajoute sur le scope. Chaque controller peut injecter des dépendances dynamiquement grâce aux paramètres.
 
-Le nom des paramètres à son importance car c'est comme cela qu'Angular sait quelle dépendance importer.
+Les noms des paramètres à son importance car c'est comme cela qu'Angular sait quelle dépendance importer.
 
 Dans un controller on a accès à tout le JS normal, donc les variables globales aussi.
 
