@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="my-tinder" class="ng-cloak">
+<head>
+    <meta charset="UTF-8">
+    <title>Tinder Angular</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <style>
+        * {
+            margin: 0;
+        }
+
+        body {
+            padding: 20px;
+            font-family: arial, sans-serif;
+            background: #222222;
+        }
+
+        .tinder {
+            max-width:  350px;
+            padding: 20px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 8px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            text-align: center;
+            color: #F85836;
+        }
+
+        .tinder_card {
+            position: relative;
+            z-index: 3;
+            display: flex;
+            margin: auto;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            height: 370px;
+            border: 1px solid grey;
+            border-radius: 8px;
+            background: #fff;
+        }
+
+        .tinder_card.is-second {
+            margin-top: -360px;
+            z-index: 2;
+            width: 90%;
+        }
+
+        .tinder_card.is-third {
+            margin-top: -360px;
+            z-index: 1;
+            width: 80%;
+        }
+
+        .tinder_img {
+            height: 300px;
+            border-bottom: 1px solid grey;
+        }
+
+        .tinder_img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .tinder_content {
+            padding: 10px;
+        }
+
+        h2 {
+            margin-bottom: 5px;
+        }
+
+        .tinder_actions {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .tinder_action {
+            display: block;
+            width: 100px;
+            height: 100px;
+            font-size: 24px;
+            background: #fff;
+            border: 0;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .is-like {
+            color: green;
+        }
+
+        .is-dislike {
+            color: red;
+        }
+
+        .ng-cloack {
+            background: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="tinder" ng-controller="TinderCtrl">
+        <h1>Tinder</h1>
+
+        <div class="tinder_cards" ng-swipe-left="dislike()" ng-swipe-right="like()">
+            <p ng-if="current >= users.length">Empty</p>
+            <article class="tinder_card" ng-repeat="user in users"
+                ng-if="users.length"
+                ng-show="[current, current+1, current+2].indexOf($index) > -1"
+                ng-class="{
+                    'is-first': $index == current,
+                    'is-second': $index == current+1,
+                    'is-third': $index == current+2
+                }">
+                <figure class="tinder_img">
+                    <img ng-src="{{ user.picture.large }}" alt="">
+                </figure>
+                <div class="tinder_content">
+                    <h2>{{ user.name.first }}, {{ user.location.state.substring(0, 10) }}</h2>
+                    <p>{{ user.phone }}</p>
+                </div>
+            </article>
+        </div>
+
+        <div class="tinder_actions" ng-if="current < users.length">
+            <button class="tinder_action is-like" ng-click="dislike()">Dislike</button>
+            <button class="tinder_action is-dislike" ng-click="like()">Like</button>
+        </div>
+    </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-touch.js"></script>
+    <script>
+        var app = angular.module('my-tinder', ['ngTouch']);
+
+        app.controller('TinderCtrl', TinderCtrl);
+
+        TinderCtrl.$inject = ['$scope', '$http'];
+        function TinderCtrl($scope, $http) {
+            $scope.users = [];
+            $scope.current = 0;
+
+            $scope.like = $scope.dislike = function () {
+                $scope.current++;
+            };
+
+            $http.get('https://randomuser.me/api/?results=10')
+                .then(function(resp) {
+                    $scope.users = resp.data.results;
+                });
+        }
+    </script>
+</body>
+</html>
